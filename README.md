@@ -2,4 +2,4 @@
 
 > Daniel Camacho
 
-[Week 0 Querying](Week_0/README.md)
+[Week 0 Querying](Querying/README.md)

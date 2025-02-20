@@ -81,7 +81,7 @@ Now let's answer **What data is in our database?**
 ### SELECT
 
 ````SQL
-sqlite > SELECT * FROM "longlist";
+SELECT * FROM "longlist";
 ````
 
 With * you can select all the elements of the table, where we specify the table with ``FROM``
@@ -89,13 +89,13 @@ With * you can select all the elements of the table, where we specify the table 
 Let's just select an specific column
 
 ````SQL
-sqlite> SELECT "title" FROM "longlist";
+SELECT "title" FROM "longlist";
 ````
 
 Now another column
 
 ````SQL
-sqlite > SELECT "title", "author" FROM "longlist";
+SELECT "title", "author" FROM "longlist";
 ````
 
 **Note:** In SQL "" double quotes are use a identifiers of columns and Strings with '' single quotes
@@ -106,7 +106,7 @@ sqlite > SELECT "title", "author" FROM "longlist";
 Limits the number of rows that we can select, for example
 
 ````SQL
-sqlite > SELECT "title" FROM "longlist" LIMIT 10;
+SELECT "title" FROM "longlist" LIMIT 10;
 ````
 
 ### WHERE
@@ -114,7 +114,7 @@ sqlite > SELECT "title" FROM "longlist" LIMIT 10;
 We just get back rows where the conditions of the where is true.
 
 ````SQL
-sqlite > SELECT "title", "author" FROM "longlist" WHERE "year" = 2023;
+SELECT "title", "author" FROM "longlist" WHERE "year" = 2023;
 ````
 
 As 2023 is an integer does not have quotes.
@@ -129,7 +129,7 @@ It's common using operators with ``WHERE`` like
 For example
 
 ````SQL
-sqlite > SELECT "title", "format" FROM "longlist" WHERE "format" != 'hardcover';
+SELECT "title", "format" FROM "longlist" WHERE "format" != 'hardcover';
 ````
 
 ### NOT 
@@ -137,7 +137,7 @@ sqlite > SELECT "title", "format" FROM "longlist" WHERE "format" != 'hardcover';
 Negate a condition
 
 ````SQL
-sqlite > SELECT "title", "format" FROM "longlist" WHERE NOT "format" = 'hardcover';
+SELECT "title", "format" FROM "longlist" WHERE NOT "format" = 'hardcover';
 ````
 
 
@@ -152,20 +152,20 @@ To make compound conditionals, and with parenthesis we can determine the order o
 For Example
 
 ````SQL
-sqlite > SELECT "title", "author" FROM "longlist" WHERE "year" = 2022
-    ...>   OR "year" = 2023;
+SELECT "title", "author" FROM "longlist" WHERE "year" = 2022
+   OR "year" = 2023;
 ````
 
 
 With Parenthesis
 
 ````SQL
-sqlite> SELECT
-   ...> "title",
-   ...> "format"
-   ...> FROM "longlist"
-   ...> WHERE ("year" = 2022 OR year = 2023)
-   ...> AND "format" != 'hardcover';
+SELECT
+ "title",
+ "format"
+ FROM "longlist"
+ WHERE ("year" = 2022 OR year = 2023)
+ AND "format" != 'hardcover';
 ````
 
 ### NULL
@@ -178,17 +178,17 @@ It can be conditionated like
 - IS NOT NULL
 
 ````SQL
-sqlite> SELECT "title", "translator"
-   ...> FROM "longlist"
-   ...> WHERE "translator" IS NULL;
+SELECT "title", "translator"
+FROM "longlist"
+WHERE "translator" IS NULL;
 ````
 
 Or 
 
 ````SQL
-sqlite> SELECT "title", "translator"
-   ...> FROM "longlist"
-   ...> WHERE "translator" IS NOT NULL;
+SELECT "title", "translator"
+FROM "longlist"
+WHERE "translator" IS NOT NULL;
 ````
 
 ### LIKE
@@ -203,23 +203,23 @@ The use of ``LIKE`` is common with the operators
 For example
 
 ````SQL
-sqlite> SELECT "title" FROM "longlist"
-   ...> WHERE "title" LIKE '%love%';
+SELECT "title" FROM "longlist"
+WHERE "title" LIKE '%love%';
 ````
 
 
 This query gives titles where Love is somewhere at the string.
 
 ````SQL
-sqlite> SELECT "title" FROM "longlist"
-   ...> WHERE "title" LIKE 'The%';
+SELECT "title" FROM "longlist"
+WHERE "title" LIKE 'The%';
 ````
 
 This query gives titles where 'The' starts at the beginnig.
 
 ````SQL
-sqlite> SELECT "title" FROM "longlist"
-   ...> WHERE "title" LIKE 'P_re';
+SELECT "title" FROM "longlist"
+WHERE "title" LIKE 'P_re';
 ````
 
 The result of the query is 'Pyre'
@@ -234,8 +234,8 @@ The result of the query is 'Pyre'
 - <=
 
 ````SQL
-sqlite> SELECT "title" FROM "longlist"
-   ...> WHERE "year" >= 2019 AND "year" <= 2022;
+SELECT "title" FROM "longlist"
+WHERE "year" >= 2019 AND "year" <= 2022;
 ````
 
 
@@ -243,19 +243,19 @@ sqlite> SELECT "title" FROM "longlist"
 #### BETWEEN ... AND ...
 
 ````SQL
-sqlite> SELECT "title",
-   ...> "year"
-   ...> FROM "longlist"
-   ...> WHERE "year" BETWEEN 2019 AND 2022;
+SELECT "title",
+"year"
+FROM "longlist"
+WHERE "year" BETWEEN 2019 AND 2022;
 ````
 
 
 ````SQL
-sqlite> SELECT "title",
-   ...> "rating",
-   ...> "votes"
-   ...> FROM "longlist"
-   ...> WHERE "rating" > 4.0 AND "votes" > 10000;
+SELECT "title",
+"rating",
+"votes"
+FROM "longlist"
+WHERE "rating" > 4.0 AND "votes" > 10000;
 ````
 
 ### ORDER BY
@@ -271,23 +271,23 @@ For this is useful the keywords
 - ORDER BY ... DESC  
 
 ````SQL
-sqlite> SELECT
-   ...> "title",
-   ...> "rating"
-   ...> FROM "longlist"
-   ...> ORDER BY "rating" DESC LIMIT 10;
+SELECT
+"title",
+"rating"
+FROM "longlist"
+ORDER BY "rating" DESC LIMIT 10;
 ````
 
 One way to break ties is adding more conditions, to know the order adding conditions.
 
 ````SQL
-sqlite> SELECT
-   ...> "title",
-   ...> "rating",
-   ...> "votes"
-   ...> FROM "longlist"
-   ...> ORDER BY "rating" DESC, "votes" DESC
-   ...> LIMIT 10;
+SELECT
+"title",
+"rating",
+"votes"
+FROM "longlist"
+ORDER BY "rating" DESC, "votes" DESC
+LIMIT 10;
 ````
 
 ### Agreggate Functions
@@ -301,31 +301,31 @@ sqlite> SELECT
 Example for the average
 
 ````SQL
-sqlite> SELECT AVG("rating") FROM "longlist";
+SELECT AVG("rating") FROM "longlist";
 ````
 
 Rounding the result would be
 
 ````SQL
-sqlite> SELECT ROUND(AVG("rating")) FROM "longlist";
+SELECT ROUND(AVG("rating")) FROM "longlist";
 ````
 
 We can specify the number of decimals
 
 ````SQL
-sqlite> SELECT ROUND(AVG("rating"), 2) FROM "longlist";
+SELECT ROUND(AVG("rating"), 2) FROM "longlist";
 ````
 
 Naming columns using ``AS``
 
 ````SQL
-sqlite> SELECT ROUND(AVG("rating"), 2) AS 'average rating'  FROM "longlist";
+SELECT ROUND(AVG("rating"), 2) AS 'average rating'  FROM "longlist";
 ````
 
 If we want to know the total number of rows
 
 ````SQL
-sqlite> SELECT COUNT(*) FROM "longlist";
+SELECT COUNT(*) FROM "longlist";
 ````
 
 ### DISTINCT 
@@ -337,7 +337,7 @@ SELECT DISTINCT "publisher" FROM "longlist";
 Eliminates rows that are the same from the query.
 
 ````SQL
-sqlite> SELECT COUNT(DISTINCT "publisher") FROM "longlist";
+SELECT COUNT(DISTINCT "publisher") FROM "longlist";
 ````
 
 Its the number of unique publishers 
@@ -346,7 +346,7 @@ Its the number of unique publishers
 In SQLite the keyboard to kill the terminal is 
 
 ````
-sqlite> .quit
+.quit
 ````
 
 
